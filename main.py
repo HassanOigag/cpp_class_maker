@@ -1,19 +1,6 @@
 from sys import argv, exit
 from datetime import datetime
 import os
-def return_header(file_name, login="hoigag"):
-    date_time = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-    return f"""/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   {file_name}                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: {login} <{login}@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: {date_time} by {login}            #+#    #+#             */
-/*   Updated: {date_time} by {login}           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */"""
 
 red = "\033[91m"
 green = "\033[92m"
@@ -75,8 +62,8 @@ def create_source_file(class_name, override):
     with open(source_file_name, "w") as f:
         # f.write(return_header(source_file_name))
         f.write("\n\n#include \"" + header_file_name + "\"\n\n")
-        f.write(class_name + "::" + class_name + "() {\n\n}\n\n")
-        f.write(class_name + "::~" + class_name + "() {\n\n}\n\n")
+        f.write(class_name + "::" + class_name + "()\n{\n\n}\n\n")
+        f.write(class_name + "::~" + class_name + "()\n{\n\n}\n\n")
     colored_print(f"created: {source_file_name} successfully", green)
 
 def create_main_file():
