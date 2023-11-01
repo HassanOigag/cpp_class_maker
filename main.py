@@ -45,10 +45,14 @@ def create_header_file(class_name, override):
         # f.write(return_header(header_file_name))
         f.write("\n\n#ifndef " + class_name.upper() + "_HPP\n")
         f.write("#define " + class_name.upper() + "_HPP\n\n")
-        f.write("class " + class_name + " {\n")
+        f.write("class " + class_name + "\n{\n")
         f.write("\tpublic:\n")
         f.write("\t\t" + class_name + "();\n")
         f.write("\t\t~" + class_name + "();\n")
+        #copy constructor
+        f.write("\t\t" + class_name + "(const " + class_name + "& other);\n")
+        #copy assignment operator
+        f.write("\t\t" + class_name + "& operator=(const " + class_name + "& other);\n")
         f.write("\tprivate:\n")
         f.write("};\n\n")
         f.write("#endif\n")
@@ -64,6 +68,10 @@ def create_source_file(class_name, override):
         f.write("\n\n#include \"" + header_file_name + "\"\n\n")
         f.write(class_name + "::" + class_name + "()\n{\n\n}\n\n")
         f.write(class_name + "::~" + class_name + "()\n{\n\n}\n\n")
+        #copy constructor
+        f.write(class_name + "::" + class_name + "(const " + class_name + "& other)\n{\n\n}\n\n")
+        #copy assignment operator
+        f.write(class_name + "& " + class_name + "::operator=(const " + class_name + "& other)\n{\n\n}\n\n")
     colored_print(f"created: {source_file_name} successfully", green)
 
 def create_main_file():
@@ -72,7 +80,7 @@ def create_main_file():
         with open(main_file_name, "w") as f:
             # f.write(return_header(main_file_name))
             f.write("\n\n#include <iostream>\n\n");
-            f.write("int main() {\n\treturn (0);\n}\n")
+            f.write("int main()\n{\n\treturn (0);\n}\n")
         colored_print(f"created: {main_file_name} successfully", green)
 
 if __name__ == "__main__":
